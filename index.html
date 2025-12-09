@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Multitool</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">🛠️ Ultimate Multitool</h1>
+            <p class="tagline">Alle Tools, die du brauchst - an einem Ort</p>
+        </header>
+
+        <nav class="nav">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Tools durchsuchen..." oninput="searchTools()">
+            </div>
+            <button class="nav-btn active" data-category="all">Alle</button>
+            <button class="nav-btn" data-category="text">Text</button>
+            <button class="nav-btn" data-category="converter">Converter</button>
+            <button class="nav-btn" data-category="calculator">Rechner</button>
+            <button class="nav-btn" data-category="generator">Generator</button>
+            <button class="nav-btn" data-category="utility">Utilities</button>
+        </nav>
+
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Text Tools -->
+            <div class="tool-card" data-category="text" data-tool="wordcounter">
+                <div class="tool-icon">📝</div>
+                <h3 class="tool-title">Wörter Zähler</h3>
+                <p class="tool-description">Zähle Wörter, Zeichen und Sätze</p>
+            </div>
+
+            <div class="tool-card" data-category="text" data-tool="caseconverter">
+                <div class="tool-icon">🔤</div>
+                <h3 class="tool-title">Groß-/Kleinschreibung</h3>
+                <p class="tool-description">Text umwandeln</p>
+            </div>
+
+            <div class="tool-card" data-category="text" data-tool="textreverser">
+                <div class="tool-icon">🔄</div>
+                <h3 class="tool-title">Text Umkehren</h3>
+                <p class="tool-description">Kehre deinen Text um</p>
+            </div>
+
+            <div class="tool-card" data-category="text" data-tool="removeduplicates">
+                <div class="tool-icon">🧹</div>
+                <h3 class="tool-title">Duplikate Entfernen</h3>
+                <p class="tool-description">Entferne doppelte Zeilen</p>
+            </div>
+
+            <!-- Converter Tools -->
+            <div class="tool-card" data-category="converter" data-tool="unitconverter">
+                <div class="tool-icon">📏</div>
+                <h3 class="tool-title">Einheiten Umrechner</h3>
+                <p class="tool-description">Länge, Gewicht, Temperatur</p>
+            </div>
+
+            <div class="tool-card" data-category="converter" data-tool="currencyconverter">
+                <div class="tool-icon">💱</div>
+                <h3 class="tool-title">Währungsrechner</h3>
+                <p class="tool-description">EUR, USD, GBP und mehr</p>
+            </div>
+
+            <div class="tool-card" data-category="converter" data-tool="base64">
+                <div class="tool-icon">🔐</div>
+                <h3 class="tool-title">Base64 En/Decoder</h3>
+                <p class="tool-description">Text zu Base64 und zurück</p>
+            </div>
+
+            <div class="tool-card" data-category="converter" data-tool="colorconverter">
+                <div class="tool-icon">🎨</div>
+                <h3 class="tool-title">Farb Converter</h3>
+                <p class="tool-description">HEX, RGB, HSL umwandeln</p>
+            </div>
+
+            <!-- Calculator Tools -->
+            <div class="tool-card" data-category="calculator" data-tool="calculator">
+                <div class="tool-icon">🔢</div>
+                <h3 class="tool-title">Taschenrechner</h3>
+                <p class="tool-description">Einfache Berechnungen</p>
+            </div>
+
+            <div class="tool-card" data-category="calculator" data-tool="percentagecalc">
+                <div class="tool-icon">💯</div>
+                <h3 class="tool-title">Prozent Rechner</h3>
+                <p class="tool-description">Prozentuale Berechnungen</p>
+            </div>
+
+            <div class="tool-card" data-category="calculator" data-tool="agecalc">
+                <div class="tool-icon">🎂</div>
+                <h3 class="tool-title">Alter Rechner</h3>
+                <p class="tool-description">Berechne dein exaktes Alter</p>
+            </div>
+
+            <div class="tool-card" data-category="calculator" data-tool="datecalc">
+                <div class="tool-icon">📅</div>
+                <h3 class="tool-title">Datums Rechner</h3>
+                <p class="tool-description">Tage zwischen Daten</p>
+            </div>
+
+            <!-- Generator Tools -->
+            <div class="tool-card" data-category="generator" data-tool="passwordgen">
+                <div class="tool-icon">🔑</div>
+                <h3 class="tool-title">Passwort Generator</h3>
+                <p class="tool-description">Sichere Passwörter erstellen</p>
+            </div>
+
+            <div class="tool-card" data-category="generator" data-tool="qrcode">
+                <div class="tool-icon">📱</div>
+                <h3 class="tool-title">QR Code Generator</h3>
+                <p class="tool-description">QR Codes erstellen</p>
+            </div>
+
+            <div class="tool-card" data-category="generator" data-tool="loremipsum">
+                <div class="tool-icon">📄</div>
+                <h3 class="tool-title">Lorem Ipsum</h3>
+                <p class="tool-description">Platzhalter Text generieren</p>
+            </div>
+
+            <div class="tool-card" data-category="generator" data-tool="uuidgen">
+                <div class="tool-icon">🆔</div>
+                <h3 class="tool-title">UUID Generator</h3>
+                <p class="tool-description">Eindeutige IDs erstellen</p>
+            </div>
+
+            <!-- Utility Tools -->
+            <div class="tool-card" data-category="utility" data-tool="timer">
+                <div class="tool-icon">⏱️</div>
+                <h3 class="tool-title">Timer</h3>
+                <p class="tool-description">Countdown Timer</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="stopwatch">
+                <div class="tool-icon">⏲️</div>
+                <h3 class="tool-title">Stoppuhr</h3>
+                <p class="tool-description">Zeit stoppen</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="notepad">
+                <div class="tool-icon">📝</div>
+                <h3 class="tool-title">Notizblock</h3>
+                <p class="tool-description">Schnelle Notizen</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="jsonformatter">
+                <div class="tool-icon">{ }</div>
+                <h3 class="tool-title">JSON Formatter</h3>
+                <p class="tool-description">JSON formatieren & validieren</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="markdownpreview">
+                <div class="tool-icon">📋</div>
+                <h3 class="tool-title">Markdown Preview</h3>
+                <p class="tool-description">Markdown in Echtzeit</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="ipinfo">
+                <div class="tool-icon">🌐</div>
+                <h3 class="tool-title">IP Info</h3>
+                <p class="tool-description">Deine IP Adresse anzeigen</p>
+            </div>
+
+            <!-- NEW TOOLS - Wave 2 -->
+            
+            <!-- Text Tools -->
+            <div class="tool-card" data-category="text" data-tool="textdiff">
+                <div class="tool-icon">🔍</div>
+                <h3 class="tool-title">Text Diff</h3>
+                <p class="tool-description">Unterschiede zwischen Texten</p>
+            </div>
+
+            <div class="tool-card" data-category="text" data-tool="slugify">
+                <div class="tool-icon">🔗</div>
+                <h3 class="tool-title">URL Slug Generator</h3>
+                <p class="tool-description">SEO-freundliche URLs erstellen</p>
+            </div>
+
+            <div class="tool-card" data-category="text" data-tool="textencrypt">
+                <div class="tool-icon">🔒</div>
+                <h3 class="tool-title">Text Verschlüsseln</h3>
+                <p class="tool-description">Caesar-Verschlüsselung</p>
+            </div>
+
+            <div class="tool-card" data-category="text" data-tool="morse">
+                <div class="tool-icon">📡</div>
+                <h3 class="tool-title">Morse Code</h3>
+                <p class="tool-description">Text zu Morse und zurück</p>
+            </div>
+
+            <!-- Converter Tools -->
+            <div class="tool-card" data-category="converter" data-tool="imageresizer">
+                <div class="tool-icon">🖼️</div>
+                <h3 class="tool-title">Bild Resizer</h3>
+                <p class="tool-description">Bilder verkleinern</p>
+            </div>
+
+            <div class="tool-card" data-category="converter" data-tool="timestamp">
+                <div class="tool-icon">⏰</div>
+                <h3 class="tool-title">Unix Timestamp</h3>
+                <p class="tool-description">Timestamp konvertieren</p>
+            </div>
+
+            <div class="tool-card" data-category="converter" data-tool="numberbase">
+                <div class="tool-icon">🔢</div>
+                <h3 class="tool-title">Zahlensystem</h3>
+                <p class="tool-description">Binär, Hex, Dezimal</p>
+            </div>
+
+            <div class="tool-card" data-category="converter" data-tool="videodownload">
+                <div class="tool-icon">📥</div>
+                <h3 class="tool-title">Video Link Info</h3>
+                <p class="tool-description">Video URL analysieren</p>
+            </div>
+
+            <!-- Calculator Tools -->
+            <div class="tool-card" data-category="calculator" data-tool="bmicalc">
+                <div class="tool-icon">⚖️</div>
+                <h3 class="tool-title">BMI Rechner</h3>
+                <p class="tool-description">Body Mass Index berechnen</p>
+            </div>
+
+            <div class="tool-card" data-category="calculator" data-tool="loancalc">
+                <div class="tool-icon">💰</div>
+                <h3 class="tool-title">Kredit Rechner</h3>
+                <p class="tool-description">Raten & Zinsen berechnen</p>
+            </div>
+
+            <div class="tool-card" data-category="calculator" data-tool="tipcalc">
+                <div class="tool-icon">🧾</div>
+                <h3 class="tool-title">Trinkgeld Rechner</h3>
+                <p class="tool-description">Tip berechnen & aufteilen</p>
+            </div>
+
+            <div class="tool-card" data-category="calculator" data-tool="gradecalc">
+                <div class="tool-icon">📊</div>
+                <h3 class="tool-title">Noten Rechner</h3>
+                <p class="tool-description">Durchschnitt berechnen</p>
+            </div>
+
+            <!-- Generator Tools -->
+            <div class="tool-card" data-category="generator" data-tool="randomcolor">
+                <div class="tool-icon">🎨</div>
+                <h3 class="tool-title">Random Color</h3>
+                <p class="tool-description">Zufällige Farbpaletten</p>
+            </div>
+
+            <div class="tool-card" data-category="generator" data-tool="fakename">
+                <div class="tool-icon">👤</div>
+                <h3 class="tool-title">Fake Name Generator</h3>
+                <p class="tool-description">Testdaten generieren</p>
+            </div>
+
+            <div class="tool-card" data-category="generator" data-tool="randomnumber">
+                <div class="tool-icon">🎲</div>
+                <h3 class="tool-title">Zufallszahl</h3>
+                <p class="tool-description">Random Number Generator</p>
+            </div>
+
+            <div class="tool-card" data-category="generator" data-tool="emailsig">
+                <div class="tool-icon">✉️</div>
+                <h3 class="tool-title">Email Signatur</h3>
+                <p class="tool-description">HTML Signatur erstellen</p>
+            </div>
+
+            <!-- Utility Tools -->
+            <div class="tool-card" data-category="utility" data-tool="urlshortener">
+                <div class="tool-icon">🔗</div>
+                <h3 class="tool-title">URL Info</h3>
+                <p class="tool-description">URL Parameter extrahieren</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="hasher">
+                <div class="tool-icon">🔐</div>
+                <h3 class="tool-title">Hash Generator</h3>
+                <p class="tool-description">MD5, SHA-256 Hashes</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="cssminifier">
+                <div class="tool-icon">🗜️</div>
+                <h3 class="tool-title">CSS Minifier</h3>
+                <p class="tool-description">CSS komprimieren</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="regextester">
+                <div class="tool-icon">🔎</div>
+                <h3 class="tool-title">Regex Tester</h3>
+                <p class="tool-description">RegEx testen & debuggen</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="csvviewer">
+                <div class="tool-icon">📋</div>
+                <h3 class="tool-title">CSV Viewer</h3>
+                <p class="tool-description">CSV Dateien anzeigen</p>
+            </div>
+
+            <div class="tool-card" data-category="utility" data-tool="speedtest">
+                <div class="tool-icon">⚡</div>
+                <h3 class="tool-title">Reaktionstest</h3>
+                <p class="tool-description">Teste deine Reaktion</p>
+            </div>
+        </div>
+
+        <!-- Modal für Tools -->
+        <div class="modal" id="toolModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle"></h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Tool content wird hier dynamisch eingefügt -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="logik.js"></script>
+</body>
+</html>
